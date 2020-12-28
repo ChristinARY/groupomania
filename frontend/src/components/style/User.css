@@ -1,0 +1,43 @@
+.logout {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding: 20px 0 20px 0;
+  font: bold 13px Arial;
+  background: #fcbc1c;
+  color: #fff;
+  border-radius: 20px;
+  width: 250px;
+  border: none;
+}
+.imgFooter {
+  padding-top: 10em;
+}
+.logout:hover {
+  background: #d67321;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.delete {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 6px 0 6px 0;
+  font: bold 13px Arial;
+  background: #a80000;
+  color: #fff;
+  border-radius: 20px;
+  width: 200px;
+  border: none;
+}
+.delete:hover {
+  background: #fc0001;
+  transition: 0.5s;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.imgProfil {
+  width: 8em;
+  border-radius: 50%;
+}

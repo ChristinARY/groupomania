@@ -31,11 +31,12 @@ exports.replyMessage = (req, res, next) => {
 }
 
 exports.getAllMessages = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1]
-    const decodedToken = jwt.verify(token, config.secret)
-    const userId = decodedToken.userId
+    //const token = req.headers.authorization.split(' ')[1]
+    //const decodedToken = jwt.verify(token, config.secret)
+    //const userId = decodedToken.userId
     con.query(
-        "SELECT messages.*, COUNT(likes.idUSERS) AS 'likes', COUNT(myLikes.idUSERS) AS 'myLikes', DATE_FORMAT(created_at,\"%d/%m/%Y %H:%i:%s\") AS created_at_formated FROM messages LEFT JOIN likes ON messages.idMESSAGES = likes.idMESSAGES LEFT JOIN likes myLikes ON messages.idMESSAGES = myLikes.idMESSAGES AND myLikes.idUSERS= ? GROUP BY messages.idMESSAGES ORDER BY created_at DESC", [userId],
+        //"SELECT messages.*, COUNT(likes.idUSERS) AS 'likes', COUNT(myLikes.idUSERS) AS 'myLikes', DATE_FORMAT(created_at,\"%d/%m/%Y %H:%i:%s\") AS created_at_formated FROM messages LEFT JOIN likes ON messages.idMESSAGES = likes.idMESSAGES LEFT JOIN likes myLikes ON messages.idMESSAGES = myLikes.idMESSAGES AND myLikes.idUSERS= ? GROUP BY messages.idMESSAGES ORDER BY created_at DESC", [userId],
+        "SELECT * FROM messages",
         function(error, results, _fields) {
             if (error) {
                 return res.status(400).json(error)

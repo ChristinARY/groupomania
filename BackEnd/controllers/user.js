@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 
 exports.signup = (req, res, _next) => {
     const user = req.body
+    console.log(user)
     bcrypt.hash(user.password, 10).then((hash) => {
         user.password = hash
         con.query('INSERT INTO users SET ?', user, function(error, _results, _fields) {
@@ -22,13 +23,16 @@ exports.signup = (req, res, _next) => {
 }
 
 exports.login = (req, res, _next) => {
-    const userReq = req.body.username
+    const userReq = req.body.phone
     const passReq = req.body.password
+    console.log(req.body)
     if (userReq && passReq) {
         con.query(
-            'SELECT * FROM groupomania.users WHERE username= ?',
+            'SELECT * FROM groupomaniadb.users WHERE phone= ?',
             userReq,
+            
             function(_error, results, _fields) {
+                console.log(results.length)
                 if (results.length > 0) {
                     bcrypt.compare(passReq, results[0].password).then((valid) => {
                         if (!valid) {
@@ -37,23 +41,31 @@ exports.login = (req, res, _next) => {
                                 .json({ message: 'Utilisateur ou mot de passe inconnu' })
                         } else {
                             console.log(userReq, "s'est connecté")
+                            
                             let privilege = ''
                             if (results[0].isAdmin === 1) {
                                 privilege = 'admin'
                             } else {
                                 privilege = 'member'
                             }
+                            console.log(results[0].id)
                             res.status(200).json({
-                                userId: results[0].idUSERS,
+                                userId: results[0].id,
                                 username: results[0].username,
-                                email: results[0].email,
+                                phone: results[0].phone,
+                                //firstname: results[0].firstname,
+                                //lastname: results[0].lastname,
+                                //email: results[0].email,
                                 privilege: privilege,
-                                token: jwt.sign({ userId: user._id },
+
+                                token: jwt.sign({ userId: results[0].id},
                                     'RANDOM_TOKEN_SECRET', { expiresIn: '24h' }
+                                    
                                 )
                             })
                         }
                     })
+                    
                 } else {
                     res
                         .status(401)
@@ -64,7 +76,7 @@ exports.login = (req, res, _next) => {
     } else {
         res
             .status(500)
-            .json({ message: "Entrez un nom d'utilisateur et un mot de passe" })
+            .json({ message: "Entrez un numero d'utilisateur et un mot de passe" })
     }
 }
 
