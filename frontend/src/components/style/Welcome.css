@@ -1,6 +1,6 @@
 .pagewelcome a {
   text-decoration: none;
-  color: indianred;
+  color: white;
 }
 .pagewelcome div {
   margin-bottom: 40px;
@@ -8,19 +8,26 @@
 }
 
 .lien {
-  font-size: 2.5em;
-  text-transform: uppercase;
+  font-size: 1.5em;
+  /*text-transform: uppercase;*/
   border: solid gray 2px;
-  border-radius: 10px;
+  border-radius: 1em;
+  background-color: #229ed8;
+  padding: 15px;
+  -webkit-box-shadow: 0 0 15px #b5b5b1;
+  box-shadow: 0 0 15px #b5b5b1;
 }
 /*.lien :hover {
   -webkit-box-shadow: 0 0 15px #b5b5b1;
   box-shadow: 0 0 15px #b5b5b1;
 }*/
-
-.cadreInsCon {
+.cadre {
+  margin-bottom: 8em;
+}
+/*.cadreInsCon {
+  margin-bottom: 8em;
   width: 30%;
   margin: auto;
   border: solid rgb(85, 85, 85) 3px;
   border-radius: 25px;
-}
+}*/

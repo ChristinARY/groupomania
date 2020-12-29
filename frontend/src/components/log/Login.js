@@ -79,6 +79,7 @@ onSubmit(e) {
           //this.setState({redirection:false});
           //localStorage.setItem("inscrit",inscription);
           //console.log(localStorage.getItem("inscrit"));
+          //<p>Pour obtenir le token Admin cliquez <span><a href="/admin">ICI</a></span></p>
         });
 
   this.setState({ phone: '', password: '' })
@@ -102,7 +103,7 @@ onSubmit(e) {
           </form>
           <div>
             <p>Pour créer un profil, cliquez <span><a href="/register">ICI</a></span></p>
-            <p>Pour obtenir le token Admin cliquez <span><a href="/admin">ICI</a></span></p>
+            
             </div>
             
       </div>

@@ -15,8 +15,8 @@ class Welcome extends Component {
           <h1>Bienvenue sur le réseau social interne de Groupomania</h1>
           <div>
           <div className="cadreInsCon">
-          <div><a href='/login'><span className="lien">Connexion</span></a></div>
-             <div><a href='/register'><span className="lien">Inscription</span></a></div>
+          <div className="cadre"><a href='/login'><span className="lien">Se Connecter</span></a></div>
+             <div><a href='/register'><span className="lien">S'inscrire</span></a></div>
           </div>
              <img src={imgGroupomania} alt='groupomania img'></img>
               </div>

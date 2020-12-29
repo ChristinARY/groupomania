@@ -78,8 +78,9 @@ class MyWall extends Component {
 
     return (
 
-      <div>
+      <div className="body">
         <h2>Bonjour {Nom} !</h2>
+        <h3>Les derniers messages postés par vos Collegues</h3>
         {allMessage}
       </div>
     )

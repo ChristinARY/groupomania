@@ -103,6 +103,10 @@ onSubmit(e) {
           <br/><button type="submit" className='inscription' value="register">Inscription</button>
           </div>
           </form>
+          <div>
+            <p>Pour vous connecter, cliquez <span><a href="/login">ICI</a></span></p>
+            
+            </div>
       </div>
     );
   }
