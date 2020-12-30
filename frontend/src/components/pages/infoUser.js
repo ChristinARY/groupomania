@@ -3,11 +3,11 @@ import imgProfil from './imgProfil2.png';
 console.log(JSON.parse(localStorage.getItem("infoUser")));
 console.log(JSON.parse(localStorage.getItem("infoUser")).username);
 
-      
+
  
   const nomUser=JSON.parse(localStorage.getItem("infoUser")).username;
   const phoneUser=JSON.parse(localStorage.getItem("infoUser")).phone;
-  
+    
 //const menu = () => <div className="menu" />;
 const InfoUser = () => (
 

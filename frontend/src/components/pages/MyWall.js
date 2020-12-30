@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
+import ComponentMessage from './componentMessage.js';
+import ComponentDeconnecte from './ComponentDeconnecte.js';
 //import axios from 'axios';
 import "../style/MyWall.css"
 //import DeleteMess from '../utils/BoutonSuppr';
-const Nom = JSON.parse(localStorage.getItem("infoUser")).username;
-console.log(localStorage.getItem('username'));
+
+
+  const Nom = JSON.parse(localStorage.getItem("infoUser")).username;
+  console.log(localStorage.getItem('username'));
+
+
+
 const API = 'http://localhost:8080/api/messages?order=id:DESC';
 
 class MyWall extends Component {
+
+
+
+
+
+
+  
+
+
 
   // default State object
   state = {
@@ -78,13 +94,12 @@ class MyWall extends Component {
 
     return (
 
-      <div className="body">
-        <h2>Bonjour {Nom} !</h2>
-        <h3>Les derniers messages postés par vos Collegues</h3>
-        {allMessage}
-      </div>
-    )
-  };
+      <div>
+        <h1>Bienvenue {Nom}!</h1>
+      {Nom?<ComponentMessage />:<ComponentDeconnecte />}
+      </div>)
+     
+}
 }
 
 export default MyWall;

@@ -93,9 +93,10 @@ exports.getAllUsers = (_req, res, _next) => {
 }
 
 exports.deleteUser = (req, res, _next) => {
+    const id = req.body
     con.query(
-        `DELETE FROM users WHERE idUSERS=${req.params.id}`,
-        req.params.id,
+       `DELETE FROM users WHERE id =${req.params.id}`, req.params.id,
+       //`DELETE FROM users WHERE id = ?`,id,
         function(error, _results, _fields) {
             if (error) {
                 return res.status(400).json(error)
