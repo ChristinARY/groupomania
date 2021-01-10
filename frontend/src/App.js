@@ -4,6 +4,7 @@ import User from './components/pages/User';
 import Login from './components/log/Login';
 import Register from './components/log/Register';
 import AddMessage from './components/pages/AddMessage';
+import CommenterMessage from './components/pages/CommenterMessage';
 import Welcome from './components/pages/Welcome';
 import Admin from './components/pages/Admin';
 import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom"
@@ -35,6 +36,7 @@ class App extends Component {
               <Route path='/mywall' exact component={MyWall} />
               <Route path='/user' exact component={User} />
               <Route path='/addmessage' exact component={AddMessage} />
+              <Route path='/commenterMessage' exact component={CommenterMessage} />
               <Route path='/register' exact component={Register} />
               <Route path='/Login' exact component={Login} />
               <Route path='/Admin' exact component={Admin} />

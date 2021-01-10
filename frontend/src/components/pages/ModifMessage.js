@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../style/AddMessage.css';
 import imgGroupomania from '../images/icon-left-font-monochrome-black.svg'
-const API_MESS = 'http://localhost:8080/api/messages/';
+const API_MESS = 'http://localhost:8080/api/messages/:id';
 //const laDate= Date(),
 //var annee   = ladate.getFullYear();
 ////var mois    = ladate.getMonth()+1;
@@ -12,7 +12,7 @@ const API_MESS = 'http://localhost:8080/api/messages/';
 //var seconde = now.getSeconds();
 //const laDate= jour+mois+annee;
 //dateDuJour=jour+mois+annee;
-class AddMessage extends Component {
+class ModifMessage extends Component {
 
   constructor(props) {
     super(props)
@@ -140,4 +140,4 @@ const headers = {
 }
 
 
-export default AddMessage;
+export default ModifMessage;

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import ComponentMessage from './componentMessage.js';
 import ComponentDeconnecte from './ComponentDeconnecte.js';
+//import ModifMessage from './ModifMessage.js';
 //import axios from 'axios';
 import "../style/MyWall.css"
 //import DeleteMess from '../utils/BoutonSuppr';
 
 
   const Nom = JSON.parse(localStorage.getItem("infoUser")).username;
-  console.log(localStorage.getItem('username'));
+  //console.log(localStorage.getItem('username'));
 
 
 
@@ -87,6 +88,7 @@ class MyWall extends Component {
         <div className="imagemywall">
           <img src={message.img} alt=""></img>
         </div>
+        
         <span className="idmess">id: {message.id}</span>
 
       </div>

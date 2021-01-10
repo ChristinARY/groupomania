@@ -15,10 +15,10 @@ exports.createMessage = (req, res, next) => {
         return res.status(201).json({ message: 'Votre message a bien été posté !' })
     })
 }
-
-exports.replyMessage = (req, res, next) => {
+exports.modifyMessages = (req, res, next) => {
     const message = req.body
-    con.query('INSERT INTO messages SET ?', message, function(
+    con.query('UPDATE messages SET ? WHERE idMESSAGES=?', message,[req.params.id],
+    function(
         error,
         _results,
         _fields
@@ -26,7 +26,21 @@ exports.replyMessage = (req, res, next) => {
         if (error) {
             return res.status(400).json(error)
         }
-        return res.status(201).json({ message: 'Votre réponse a bien été postée !' })
+        return res.status(201).json({ message: 'Votre message a bien été posté !' })
+    })
+}
+
+exports.replyMessage = (req, res, next) => {
+    const commentaire = req.body
+    con.query('INSERT INTO commentaires SET ?', commentaire, function(
+        error,
+        _results,
+        _fields
+    ) {
+        if (error) {
+            return res.status(400).json(error)
+        }
+        return res.status(201).json({ message: 'Votre commentaire a bien été postée !' })
     })
 }
 
@@ -36,7 +50,25 @@ exports.getAllMessages = (req, res, next) => {
     //const userId = decodedToken.userId
     con.query(
         //"SELECT messages.*, COUNT(likes.idUSERS) AS 'likes', COUNT(myLikes.idUSERS) AS 'myLikes', DATE_FORMAT(created_at,\"%d/%m/%Y %H:%i:%s\") AS created_at_formated FROM messages LEFT JOIN likes ON messages.idMESSAGES = likes.idMESSAGES LEFT JOIN likes myLikes ON messages.idMESSAGES = myLikes.idMESSAGES AND myLikes.idUSERS= ? GROUP BY messages.idMESSAGES ORDER BY created_at DESC", [userId],
+        //"SELECT * FROM messages", SELECT * FROM messages INNER JOIN `commentaires` ON messages.ID = commentaires.messageId
+        //"SELECT * FROM messages LEFT JOIN `commentaires` ON messages.ID = commentaires.messageId", 
         "SELECT * FROM messages",
+        //" SELECT * FROM messages LEFT JOIN `commentaires` ON messages.ID = commentaires.messageId HAVING messageId=?",[req.params.id], 
+        function(error, results, _fields) {
+            if (error) {
+                return res.status(400).json(error)
+            }
+            return res.status(200).json({ results })
+        }
+    )
+}
+exports.getAllCommentaire = (req, res, next) => {
+    //const token = req.headers.authorization.split(' ')[1]
+    //const decodedToken = jwt.verify(token, config.secret)
+    //const userId = decodedToken.userId
+    con.query(
+        //"SELECT messages.*, COUNT(likes.idUSERS) AS 'likes', COUNT(myLikes.idUSERS) AS 'myLikes', DATE_FORMAT(created_at,\"%d/%m/%Y %H:%i:%s\") AS created_at_formated FROM messages LEFT JOIN likes ON messages.idMESSAGES = likes.idMESSAGES LEFT JOIN likes myLikes ON messages.idMESSAGES = myLikes.idMESSAGES AND myLikes.idUSERS= ? GROUP BY messages.idMESSAGES ORDER BY created_at DESC", [userId],
+        "SELECT * FROM commentaires WHERE messageId=?",[req.params.id],
         function(error, results, _fields) {
             if (error) {
                 return res.status(400).json(error)
@@ -46,9 +78,9 @@ exports.getAllMessages = (req, res, next) => {
     )
 }
 
-exports.modifyMessage = (req, res, next) => {
+/*exports.modifyMessage = (req, res, next) => {
     con.query(
-        'SELECT * FROM messages WHERE idMESSAGES=?',
+        'SELECT * FROM messages WHERE id=?',
         req.params.id,
         function(error, results, _fields) {
             if (error) {
@@ -76,7 +108,7 @@ exports.modifyMessage = (req, res, next) => {
             )
         }
     )
-}
+}*/
 
 exports.deleteMessage = (req, res, next) => {
     con.query(
@@ -110,6 +142,19 @@ exports.deleteMessage = (req, res, next) => {
     )
 }
 
+exports.signalerMessage = (req, res, next) => {
+    const signaler = req.body
+    con.query('INSERT INTO messagessignaler SET ?', signaler, function(
+        error,
+        _results,
+        _fields
+    ) {
+        if (error) {
+            return res.status(400).json(error)
+        }
+        return res.status(201).json({ message: 'Votre signalement a été pris en compte avec succes !' })
+    })
+}
 exports.addLike = (req, res, next) => {
     const like = req.body
     con.query('INSERT INTO likes SET ?', like, function(

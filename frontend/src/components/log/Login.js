@@ -36,27 +36,12 @@ onSubmit(e) {
   };
   let conection = JSON.stringify(userObject);
   console.log(conection);
-  /*axios.post(API_LOG , userObject)
-      .then((res) => {
-          localStorage.setItem('userTokenLog', JSON.stringify(res.data));
-          window.location = "/mywall";
-      }).catch(() => {
-          (window.alert("Identifiant/Mot de passe Incorrect"))
-      });*/
-
-
-
 
       fetch(API_LOG, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          //"Access-Control-Allow-Origin": "*",
-          //"Access-Control-Allow-Headers":
-          //"Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
-          //"Access-Control-Allow-Methods":
-          //"GET, POST, PUT, DELETE, PATCH, OPTIONS",
-
+       
         },
         body: conection,
       })

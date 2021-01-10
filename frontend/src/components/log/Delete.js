@@ -1,7 +1,7 @@
   
 import React from "react";
 import axios from "axios";
-console.log(JSON.parse(localStorage.getItem("infoUser")).id);
+//console.log(JSON.parse(localStorage.getItem("infoUser")).id);
 const API = 'http://localhost:8080/api/auth/'+localStorage.getItem('idUser')
 
 

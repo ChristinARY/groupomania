@@ -49,7 +49,9 @@ textarea {
 #URL {
   width: 275px;
 }
-
+.bloCommentaire {
+  padding-left: 4em;
+}
 @media only screen and (max-width: 400px) {
   .inputMessage {
     border: none;

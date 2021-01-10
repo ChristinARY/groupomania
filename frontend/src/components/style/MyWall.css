@@ -16,7 +16,7 @@ img {
   background-color: #f5f5f5;
 }*/
 .messages {
-  background-color: #fefeca;
+  background-color: #c8fafc;
   -webkit-box-shadow: 0 0 15px #b5b5b1;
   box-shadow: 0 0 15px #b5b5b1;
 }
@@ -27,4 +27,37 @@ img {
   font-size: x-small;
   color: grey;
   opacity: 0.33;
+}
+.btnBasMessage {
+  background-color: #7fd5f9;
+  -webkit-box-shadow: 0 0 15px #b5b5b1;
+  box-shadow: 0 0 15px #b5b5b1;
+  border: black solide 4em;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 4px;
+  margin: 2px;
+}
+.btnBasMessagePerso {
+  background-color: #7fd5f9;
+  -webkit-box-shadow: 0 0 15px #b5b5b1;
+  box-shadow: 0 0 15px #b5b5b1;
+  border: black solide 4em;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 4px;
+  margin: 2px;
+}
+.btnBasMessage:hover {
+  background-color: #004389;
+  color: white;
+  border: #f7666d;
+}
+.btnBasMessagePerso:hover {
+  background-color: #004389;
+  color: white;
+  border: #f7666d;
+}
+.afficheBtnBasMessage {
+  display: none;
 }
