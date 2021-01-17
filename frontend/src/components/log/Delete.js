@@ -30,7 +30,7 @@ const Delete = () => {
       };
 
       fetch(API,{
-        method: "POST",
+        //method: "POST",
         headers:(headers),
         //body: id,
       })
@@ -54,8 +54,9 @@ const Delete = () => {
 }).catch((error) => {
     console.log(error)
 });*/
-    //localStorage.clear()
-    //window.location = "/";
+    localStorage.clear()
+    localStorage.setItem("infoUser",JSON.stringify({id:"",username:"",phone:""}));
+    window.location = "/";
     //localStorage.setItem("infoUser",JSON.stringify({id:"",username:"",phone:""}));
 }
   };

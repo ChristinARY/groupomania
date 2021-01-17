@@ -1,35 +1,38 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../style/AddMessage.css';
+import imgGroupomania from '../images/icon-left-font-monochrome-black.svg'
+const API_MESS = 'http://localhost:8080/api/messages/';
 
-const API_Modif_MESS = 'http://localhost:8080/api/messages/';
-//const API_MESS = 'http://localhost:8080/api/messages/:id';
-
-class ComponentModifier extends Component {
+class ExpaceAdmin extends Component {
 
   constructor(props) {
     super(props)
    
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeContent= this.onChangeContent.bind(this);
+    this.onChangeImg= this.onChangeImg.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-   
 
     this.state = {
+        userId:'',
         title: '',
-        content: ''
+        content: '',
+        img:''
     }
 }
 
-//this.setState({ title: this.props.recupTitleMessage, content: this.props.recupContentMessage})
-
 
 onChangeTitle(e) {
-    this.setState({ title: e.target.value })
-  }
-  
-  onChangeContent(e) {
-    this.setState({ content: e.target.value })
-  }
+  this.setState({ title: e.target.value })
+}
+
+onChangeContent(e) {
+  this.setState({ content: e.target.value })
+}
+onChangeImg(e) {
+  this.setState({ img: e.target.value })
+}
 
 onSubmit(e) {
   e.preventDefault()
@@ -37,14 +40,16 @@ onSubmit(e) {
   /*const tokenId = JSON.parse(localStorage.getItem(('userTokenLog')))
   axios.defaults.headers.common = {'Authorization': `Bearer ${tokenId.token}`}
   console.log(JSON.parse(localStorage.getItem('userTokenLog')))*/
-  const respMessObject = {
-    //messageId:this.props.recupIdMessage,
-    title: this.state.title,
-    content: this.state.content,
+  const messObject = {
+      userId:localStorage.getItem('idUser'),
+      title: this.state.title,
+      content: this.state.content,
+      img: this.state.img,
+      //createdAt:dateDuJour
   };
 
-  let newMsgMofif = JSON.stringify(respMessObject);
-  console.log(newMsgMofif);
+  let newMsg = JSON.stringify(messObject);
+  console.log(newMsg);
 
   //console.log(messObject);
 
@@ -65,14 +70,14 @@ const headers = {
 
 
 
-    fetch(API_Modif_MESS+this.props.recupIdMessage, {
+    fetch(API_MESS, {
       method: "POST",
       headers:(headers),
-      body: newMsgMofif,
+      body: newMsg,
     })
       .then((responsePost) => responsePost.json())
       .then((responsePost) => {
-        console.log(newMsgMofif)
+        console.log(newMsg)
         console.log(responsePost)
         
       });
@@ -84,7 +89,16 @@ const headers = {
 
 
 
-  this.setState({ title: '', content: ''})
+
+  /*axios.post(API_MESS , newMsg)
+  
+      .then((res) => {
+          console.log(res.data)
+      }).catch((error) => {
+          console.log(error)
+      });*/
+
+  this.setState({ title: '', content: '', img:''})
   window.location = "/mywall";
     }
 }
@@ -97,18 +111,20 @@ const headers = {
   }
 
     return (
-        <div>
-          <h1>Modifier le message</h1>
+      <div className="ajoutmessage">
+          <h1>Bienvenu dans l'expace ADMINISTRATEUR</h1>
           <form onSubmit={this.onSubmit}>
-          <div >
-          <label htmlFor="titre">Titre</label>
+          <div className="inputMessage">
+                <label htmlFor="titre">Titre</label>
           <br /><input id="titre" value={this.state.title} onChange={this.onChangeTitle} />
           <br /><label htmlFor="contenu">Contenu du message</label>
           <br /><textarea id="contenu" value={this.state.content} onChange={this.onChangeContent} />
-          <br /><button className="post">Modifier le Message</button>
+          <br /><label htmlFor="URL">Lien contenu multimédia (optionnel)</label>
+          <br /><input id="URL" value={this.state.img} onChange={this.onChangeImg} placeholder="https://www.example.com/images/monImage.jpg" />
+          <br /><button className="post">Poster le message</button>
           </div>
           </form>
-          
+          <div className="imgFooter"><img src={imgGroupomania} alt='groupomania img'></img></div>
       </div>
     );
   }
@@ -116,4 +132,4 @@ const headers = {
 }
 
 
-export default ComponentModifier;
+export default ExpaceAdmin;

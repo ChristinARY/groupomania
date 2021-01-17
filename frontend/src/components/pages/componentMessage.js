@@ -3,8 +3,12 @@ import MiniCommenterMessage from './MiniCommenterMessage.js';
 import Componentcommentaire from './Componentcommentaire.js';
 import ComponentSignaler from './ComponentSignaler.js'; 
 import ComponentModifier from './ComponentModifier.js';
+import Componentsupprimer from './Componentsupprimer.js';
 import fotoProfil from './fotoProfil.png';
+
+
 const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
+//const UserId = localStorage.getItem('idUser');
 //const verifie = false ; if(localStorage.getItem('idUser')=message.userId){
            // verifie = false;
          // }
@@ -15,12 +19,10 @@ const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
     class ComponentMessage extends Component {
 
 
+/*componentDidMount(){
 
 
-
-
-  
-
+}*/
 
 
         // default State object
@@ -30,7 +32,8 @@ const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
           afficheInputCom:false,
           afficheInputSignaler:false,
           modifierMessage:false,
-          verifie : true
+          supprimerMessage:false,
+          verifie : false
         }
 
         changeState=(event) => {
@@ -50,15 +53,22 @@ const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
             modifierMessage:true 
           });
         }
+        supprimerMessageChangeState=(event) => {
+          this.setState({
+            supprimerMessage:true 
+          });
+        }
         verifieChangeState=(event) => {
           this.setState({
-            verifie:false
+            verifie:true
           });
         }
         /*changeState () {
           this.setState({afficheInputCom:true})  
         }*/
         componentDidMount() {
+
+
           /*axios
             .get(API)
             .then(response => {
@@ -88,11 +98,12 @@ const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
                 
                 return {
                   id: c.id,
+                  userId: c.userId,
                   title: c.title,
                   content: c.content,
                   contentCom: c.contentCom,
                   //img: c.img,
-                  User: c.userId
+                  //User: c.userId
                 };
               });
               // create a new "State" object without mutating 
@@ -114,15 +125,23 @@ const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
         render() {
           //localStorage.setItem('idMsg', JSON.stringify(message.id));  {this.state.afficheInputCom?<CommenterMessage  recupIdMessage={message.id} />:null}   <a  href="http://localhost:8081/commenterMessage/" /*value={message.id}*/ className="btnBasMessage"  >Commenter</a>
       //{!(message.userId===localStorage.getItem('idUser'))?this.verifieChangeState:null}
-          const allMessage = this.state.messages.map((message) =>
-          
-          
-          
+
+
+      //{this.state.verifie?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso"  /*onClick={this.modifierMessageChangeState}*/>Modifier</button>:null}
+      //{this.state.verifie?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso" onClick={this.supprimerMessageChangeState}>Supprimer </button>:null}
+
+      //{message.userId=localStorage.getItem('idUser')?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso"  /*onClick={this.modifierMessageChangeState}*/>Modifier</button>:null}
+      //{message.userId=localStorage.getItem('idUser')?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso" onClick={this.supprimerMessageChangeState}>Supprimer </button>:null}
+      //{this.state.verifie?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso"  onClick={this.modifierMessageChangeState}>Modifier</button>:null}
+      //{this.state.verifie?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso" onClick={this.supprimerMessageChangeState}>Supprimer </button>:null}   
+      //<h3>{message.userId}</h3>
+      const allMessage = this.state.messages.map((message) =>
+
             <div className="messages" key={message.id} >
               <div className="header"><img className="imgProfilCom" src={fotoProfil} alt=""/></div>
               <span className="idmess">id: {message.id} </span>
               <div>
-              <h3>{message.userId}</h3>
+              
               <h4>{message.title}</h4>
               <p>{message.content}</p>
               <div className="imagemywall">
@@ -135,11 +154,13 @@ const APIMSG = 'http://localhost:8080/api/messages?order=id:DESC';
               </div>
               <div className="BloBbtnBasMessage">
               <button className="btnBasMessage"  onClick={this.changeState}>Commente</button>
-              {this.state.verifie?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso"  onClick={this.modifierMessageChangeState}>Modifier</button>:null}
-              {this.state.verifie?<button  /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso">Supprimer </button>:null}
+              
+              {message.userId==localStorage.getItem('idUser')?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso"  onClick={this.modifierMessageChangeState}>Modifier</button>:null}
+              {message.userId==localStorage.getItem('idUser')?<button /*className="afficheBtnBasMessage"*/ className="btnBasMessagePerso" onClick={this.supprimerMessageChangeState}>Supprimer </button>:null}
               <button className="btnBasMessage" onClick={this.signalChangeState}>Signaler</button>
               </div>
               
+              {this.state.supprimerMessage?<Componentsupprimer  recupIdMessage={message.id} />:null}
               {this.state.modifierMessage?<ComponentModifier recupTitleMessage={message.title} recupContentMessage={message.content}  recupIdMessage={message.id} />:null}
               {this.state.afficheInputSignaler?<ComponentSignaler  recupIdMessage={message.id} />:null}
               {this.state.afficheInputCom?<MiniCommenterMessage  recupIdMessage={message.id} />:null}

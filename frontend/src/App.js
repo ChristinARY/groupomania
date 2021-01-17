@@ -5,11 +5,14 @@ import Login from './components/log/Login';
 import Register from './components/log/Register';
 import AddMessage from './components/pages/AddMessage';
 import CommenterMessage from './components/pages/CommenterMessage';
+import ExpaceAdmin from './components/pages/ExpaceAdmin';
 import Welcome from './components/pages/Welcome';
 import Admin from './components/pages/Admin';
 import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom"
 import './App.css';
 import logo from './components/images/icon-left-font-monochrome-white.png'
+const privilege = JSON.parse(localStorage.getItem("infoUser")).privilege;
+console.log("privilege")
 
 class App extends Component {
 
@@ -27,6 +30,8 @@ class App extends Component {
               <Link to="/mywall"><i className="fas fa fa-home fa-2x"></i></Link>
               <Link to="/addmessage"><i className="fas fa fa-comment fa-2x"></i></Link>
               <Link to="/user"><i className="fas fa fa-id-card fa-2x"></i></Link>
+              {privilege=="admin"?<Link to="/ExpaceAdmin"><i className="fas fa fa-cogs fa-2x"></i></Link>:null}
+              
             </div>
           </header>
           
@@ -36,6 +41,7 @@ class App extends Component {
               <Route path='/mywall' exact component={MyWall} />
               <Route path='/user' exact component={User} />
               <Route path='/addmessage' exact component={AddMessage} />
+              <Route path='/ExpaceAdmin' exact component={ExpaceAdmin} />
               <Route path='/commenterMessage' exact component={CommenterMessage} />
               <Route path='/register' exact component={Register} />
               <Route path='/Login' exact component={Login} />
