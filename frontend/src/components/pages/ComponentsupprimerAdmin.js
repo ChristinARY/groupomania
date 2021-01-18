@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../style/AddMessage.css';
 
 //const API_REP_MESS = 'http://localhost:8080/api/messages/commentaires/';
-const API_SUP_MESS = 'http://localhost:8080/api/messages/del/';
+const API_SUP_USERS = 'http://localhost:8080/api/auth/';
 
-class Componentsupprimer extends Component {
+class ComponentsupprimerAdmin extends Component {
 
   constructor(props) {
     super(props)
@@ -60,7 +60,7 @@ const headers = {
 
 
 
-    fetch(API_SUP_MESS+this.props.recupIdMessage)
+    fetch(API_SUP_USERS+this.props.recupUsersId)
       .then((responsePost) => responsePost.json())
       .then((responsePost) => {
         console.log(newMsgSup)
@@ -76,7 +76,7 @@ const headers = {
 
 
   //this.setState({ content: ''})
-  window.location = "/mywall";
+  window.location = "/ComponentAllUsersAdmin";
     }
 }
 
@@ -103,4 +103,4 @@ const headers = {
 }
 
 
-export default Componentsupprimer;
+export default ComponentsupprimerAdmin;

@@ -82,7 +82,8 @@ exports.login = (req, res, _next) => {
 
 exports.getAllUsers = (_req, res, _next) => {
     con.query(
-        'SELECT idUSERS, username, isAdmin, bio, email FROM groupomania.users',
+        //'SELECT idUSERS, username, isAdmin, bio, email FROM groupomania.users',
+        'SELECT * FROM users',
         function(error, results, _fields) {
             if (error) {
                 return res.status(400).json(error)

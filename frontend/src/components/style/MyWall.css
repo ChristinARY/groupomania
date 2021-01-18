@@ -25,8 +25,8 @@ img {
 }
 .idmess {
   font-size: x-small;
-  color: grey;
-  opacity: 0.33;
+  color: red;
+  opacity: 0.7;
 }
 .btnBasMessage {
   background-color: #7fd5f9;

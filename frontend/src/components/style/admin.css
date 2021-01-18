@@ -1,0 +1,16 @@
+.BtnAdmin {
+  padding: 20px 10px 20px 10px;
+
+  font: bold 13px Arial;
+  background: #27983c;
+  color: #fff;
+  border-radius: 20px;
+  width: 250px;
+  border: none;
+  text-decoration: none;
+}
+.BtnAdmin:hover {
+  background: #d67321;
+  transition: 0.5s;
+  cursor: pointer;
+}

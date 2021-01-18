@@ -11,8 +11,10 @@ router.get('/', messageCtrl.getAllMessages)
 router.post('/commentaires',multer, messageCtrl.replyMessage)
 router.get('/commentaires/:id', messageCtrl.getAllCommentaire)
 router.post('/:id', multer, messageCtrl.modifyMessages)
-router.get('/:id', messageCtrl.deleteMessage)
-router.post('/signaler', messageCtrl.signalerMessage)
+router.get('/del/:id', messageCtrl.deleteMessage)
+router.post('/signaler/:id', messageCtrl.signalerMessage)
+router.get('/AllMsgSignaler', messageCtrl.getSignalMessages)
+
 //router.post('/:id/like', auth, messageCtrl.addLike)
 //router.delete('/:id/like', auth, messageCtrl.removeLike)
 

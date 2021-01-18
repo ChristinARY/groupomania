@@ -4,7 +4,11 @@ import User from './components/pages/User';
 import Login from './components/log/Login';
 import Register from './components/log/Register';
 import AddMessage from './components/pages/AddMessage';
-import CommenterMessage from './components/pages/CommenterMessage';
+import ComponentMessagesSignale from './components/pages/ComponentMessagesSignaler';
+import ComponentMessageAdmin from './components/pages/ComponentMessageAdmin';
+import ComponentAllUsersAdmin from './components/pages/ComponentAllUsersAdmin';
+
+//import CommenterMessage from './components/pages/CommenterMessage';
 import ExpaceAdmin from './components/pages/ExpaceAdmin';
 import Welcome from './components/pages/Welcome';
 import Admin from './components/pages/Admin';
@@ -30,7 +34,7 @@ class App extends Component {
               <Link to="/mywall"><i className="fas fa fa-home fa-2x"></i></Link>
               <Link to="/addmessage"><i className="fas fa fa-comment fa-2x"></i></Link>
               <Link to="/user"><i className="fas fa fa-id-card fa-2x"></i></Link>
-              {privilege=="admin"?<Link to="/ExpaceAdmin"><i className="fas fa fa-cogs fa-2x"></i></Link>:null}
+              {privilege==="admin"?<Link to="/ExpaceAdmin"><i className="fas fa fa-cogs fa-2x"></i></Link>:null}
               
             </div>
           </header>
@@ -42,7 +46,9 @@ class App extends Component {
               <Route path='/user' exact component={User} />
               <Route path='/addmessage' exact component={AddMessage} />
               <Route path='/ExpaceAdmin' exact component={ExpaceAdmin} />
-              <Route path='/commenterMessage' exact component={CommenterMessage} />
+              <Route path='/AllMessagesSignale' exact component={ComponentMessagesSignale} />
+              <Route path='/ComponentAllUsersAdmin' exact component={ComponentAllUsersAdmin} />
+              <Route path='/AllMessagesAdmin' exact component={ComponentMessageAdmin} />
               <Route path='/register' exact component={Register} />
               <Route path='/Login' exact component={Login} />
               <Route path='/Admin' exact component={Admin} />

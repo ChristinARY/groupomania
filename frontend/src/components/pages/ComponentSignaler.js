@@ -61,7 +61,7 @@ const headers = {
 
 
 
-    fetch(API_SIGNAL_MESS, {
+    fetch(API_SIGNAL_MESS +localStorage.getItem('idUser'), {
       method: "POST",
       headers:(headers),
       body: newMsgSignaler,
@@ -74,7 +74,7 @@ const headers = {
       });
 
   this.setState({ signalerContent: ''})
-  window.location = "/mywall";
+  //window.location = "/mywall";
     }
 }
 

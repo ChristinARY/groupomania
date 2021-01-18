@@ -79,6 +79,7 @@ const APICMT = 'http://localhost:8080/api/messages/commentaires/';
               //console.log('idMsg');
               // store the new state object in the component's state
               this.setState(newState);
+              
               console.log(newCommentaire)
             })
       
